@@ -39,8 +39,8 @@ Clone this repository to the local directory.
 * db12c.rsp: response file for DB silent install
 
 ```
-$ git clone https://github.com/yasushiyy/vagrant-oraclelinux6.git
-$ cd vagrant-oraclelinux6
+$ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
+$ cd vagrant-docker-oracle12c
  ```
 
 Download the database binary form below.  Unzip to the same directory as above.  It should have the subdirectory name "database".
