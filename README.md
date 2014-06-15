@@ -204,7 +204,7 @@ Oracle Net Services configuration successful. The exit code is 0
 Create database using dbca.
 
 ```
-[oracle@localhost tmp]$ dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbName corcl -sysPassword oracle -systemPassword oracle -emConfiguration NONE -datafileDestination /opt/datafile -storageType FS -characterSet AL32UTF8
+[oracle@db12c ~]$ dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbName corcl -sysPassword oracle -systemPassword oracle -emConfiguration NONE -datafileDestination /opt/datafile -storageType FS -characterSet AL32UTF8
 Copying database files
 1% complete
 3% complete
