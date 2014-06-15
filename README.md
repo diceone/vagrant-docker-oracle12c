@@ -31,7 +31,7 @@ as of 6/15/2014
                 MacOSX
 ```
 
-## Setup
+## Prepare
 
 Clone this repository to the local directory.
 * Vagrantfile: uses CentOS 6.5, memory=2048M, reads setup.sh
@@ -56,7 +56,7 @@ Install VirtualBox plugin.
 $ vagrant plugin install vagrant-vbguest
 ```
 
-## Setup Host OS
+## Install Host OS
 
 vagrant up will do the following:
 * download CentOS 6.5 and boot up
@@ -97,7 +97,7 @@ gepage=never
 
 ```
 
-## Setup Container OS
+## Install Container OS
 
 As of writing, EPEL repository's lxc-docker is a bit old.  It should be updated very soon.
 
@@ -124,7 +124,7 @@ Pulling repository yasushiyy/oraclelinux6
   :
 ```
 
-## Setup Database
+## Install Database
 
 Connect to the container.  Change hostname.  Switch to oracle user.
 
