@@ -60,8 +60,8 @@ $ vagrant plugin install vagrant-vbguest
 
 vagrant up will do the following:
 * download CentOS 6.5 and boot up
-* convert into Oracle Linux 6.5
-* fix locale warning error
+* convert into Oracle Linux 6.5 https://linux.oracle.com/switch/centos/
+* fix locale warning
 * install oracle-rdbms-server-12cR1-preinstall
 * install lxc-docker
 * install UEK and make it a default kernel
@@ -117,6 +117,17 @@ Last stable version: 1.0.0, please update docker
 ```
 
 Pull the Oracle Linux 6.5 Docker image from the repository.  This was created via https://github.com/yasushiyy/docker-oraclelinux6
+
+Image was created in the following way:
+* use official centos:centos6 image
+* convert into Oracle Linux 6.5 https://linux.oracle.com/switch/centos/
+* fix missing MAKEDEV error
+* fix locale warning
+* install vim
+* install oracle-rdbms-server-12cR1-preinstall
+* fix libnss_files.so to use /tmp/hosts instead of /etc/hosts https://gist.github.com/lalyos/9525120
+* create install directories
+* add ORACLE_XX environment variables
 
 ```
 [vagrant@localhost ~]$ sudo docker pull yasushiyy/oraclelinux6
