@@ -55,6 +55,7 @@ $ vagrant plugin install vagrant-vbguest
 
 Clone this repository to the local directory.
 * Vagrantfile: uses CentOS 6.5, memory=2048M, reads setup.sh
+* Dockerfile: uses CentOS 6.5, uploaded as "yasushiyy/oraclelinux6" to the Docker Hub
 * setup.sh: converts into Oracle Linux, installs necessary packages
 * db12c.rsp: response file for DB silent install
 
@@ -121,7 +122,7 @@ gepage=never
 
 ## Install Container OS
 
-Pull the Oracle Linux 6.5 Docker image from the repository.  This was created via https://github.com/yasushiyy/docker-oraclelinux6
+Pull the Oracle Linux 6.5 Docker image from the Docker Hub repository.
 
 Image was created in the following way:
 * use official centos:centos6 image
