@@ -43,7 +43,7 @@ $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
 $ cd vagrant-docker-oracle12c
  ```
 
-If you are behind a proxy, edit setup.sh to add "export https_proxy=<proxy:port>".  Make sure "https_proxy" is lowercase.
+If you are behind a proxy, edit setup.sh to add proxy settings.
 
 Download the database binary form below.  Unzip to the same directory as above.  It should have the subdirectory name "database".
 
@@ -142,7 +142,7 @@ Pulling repository yasushiyy/oraclelinux6
 Connect to the container.  Change hostname.  Switch to oracle user.
 
 ```
-[vagrant@localhost ~]$ sudo docker run --privileged -t -i -v /vagrant:/vagrant yasushiyy/oraclelinux6 /bin/bash 
+[vagrant@localhost ~]$ sudo docker run --privileged -p 11521:1521 -t -i -v /vagrant:/vagrant yasushiyy/oraclelinux6 /bin/bash 
 
 bash-4.1# hostname -v db12c
 bash-4.1# echo "127.0.0.1  localhost localhost.localdomain db12c" > /tmp/hosts
