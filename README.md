@@ -33,6 +33,26 @@ as of 6/15/2014
 
 ## Prepare
 
+If you are behing a proxy, install vagrant-proxyconf.
+
+```
+(MacOSX)
+$ export http_proxy=proxy:port
+$ export https_proxy=proty:port
+
+(Windows)
+$ set http_proxy=proxy:port
+$ set https_proxy=proxy:port
+
+$ vagrant plugin install vagrant-proxyconf
+```
+
+Install VirtualBox plugin.
+
+```
+$ vagrant plugin install vagrant-vbguest
+```
+
 Clone this repository to the local directory.
 * Vagrantfile: uses CentOS 6.5, memory=2048M, reads setup.sh
 * setup.sh: converts into Oracle Linux, installs necessary packages
@@ -43,7 +63,13 @@ $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
 $ cd vagrant-docker-oracle12c
  ```
 
-If you are behind a proxy, edit setup.sh to add proxy settings.
+If you are behind a proxy, add follwing to Vagrantfile:
+
+```
+config.proxy.http     = "http://proxy:port"
+config.proxy.https    = "http://proxy:port"
+config.proxy.no_proxy = "localhost,127.0.0.1"
+```
 
 Download the database binary form below.  Unzip to the same directory as above.  It should have the subdirectory name "database".
 
@@ -51,12 +77,6 @@ http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.ht
 
 * linuxamd64_12c_database_1of2.zip
 * linuxamd64_12c_database_2of2.zip
-
-Install VirtualBox plugin.
-
-```
-$ vagrant plugin install vagrant-vbguest
-```
 
 ## Install Host OS
 
