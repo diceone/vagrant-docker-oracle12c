@@ -13,6 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 2048
   end
 
+  # Oracle port forwarding
+  config.vm.network "forwarded_port", guest: 11521, host: 21521
+
   # run setup.sh
   config.vm.provision "shell", path: "setup.sh"
 end
