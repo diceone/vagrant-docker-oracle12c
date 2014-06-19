@@ -85,7 +85,7 @@ vagrant up will do the following:
 * convert into Oracle Linux 6.5 https://linux.oracle.com/switch/centos/
 * fix locale warning
 * install oracle-rdbms-server-12cR1-preinstall
-* install lxc-docker
+* install docker-io
 * install UEK and make it a default kernel
   * does not use UEKR3 at this point
 
@@ -121,23 +121,6 @@ gepage=never
 
 ## Install Container OS
 
-As of writing, EPEL repository's lxc-docker is a bit old.  It should be updated very soon.
-
-```
-$ vagrant ssh
-
-[vagrant@localhost ~]$ sudo docker version
-Client version: 0.11.1
-Client API version: 1.11
-Go version (client): go1.2.1
-Git commit (client): fb99f99/0.11.1
-Server version: 0.11.1
-Server API version: 1.11
-Git commit (server): fb99f99/0.11.1
-Go version (server): go1.2.1
-Last stable version: 1.0.0, please update docker
-```
-
 Pull the Oracle Linux 6.5 Docker image from the repository.  This was created via https://github.com/yasushiyy/docker-oraclelinux6
 
 Image was created in the following way:
@@ -152,6 +135,8 @@ Image was created in the following way:
 * add ORACLE_XX environment variables
 
 ```
+$ vagrant ssh
+
 [vagrant@localhost ~]$ sudo docker pull yasushiyy/oraclelinux6
 Pulling repository yasushiyy/oraclelinux6
   :
