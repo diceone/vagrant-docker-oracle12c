@@ -12,7 +12,7 @@ as of 6/15/2014
   * oracle-rdbms-server-12cR1-preinstall
   * Docker
   * Unbreakable Enterprise Kernel
-* Container https://registry.hub.docker.com/u/yasushiyy/oraclelinux6/ 
+* Container
   * Oracle Linux 6.5 (converted from CentOS6.5)
   * oracle-rdbms-server-12cR1-preinstall
   * Oracle Datbabase 12cR1
