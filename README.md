@@ -43,6 +43,8 @@ $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
 $ cd vagrant-docker-oracle12c
  ```
 
+If you are behind a proxy, edit setup.sh to add "export HTTPS_PROXY=<proxy:port>".
+
 Download the database binary form below.  Unzip to the same directory as above.  It should have the subdirectory name "database".
 
 http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
