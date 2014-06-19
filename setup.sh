@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# proxy
-# export http_proxy="http://proxy:port/"
-# export https_proxy="http://proxy:port/"
-# echo "proxy=http://proxy:port" >> /etc/yum.conf
-
-
 # convert into Oracle Linux 6
 curl -O https://linux.oracle.com/switch/centos2ol.sh
 sh centos2ol.sh
