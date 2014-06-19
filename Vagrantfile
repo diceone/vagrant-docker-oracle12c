@@ -18,4 +18,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # run setup.sh
   config.vm.provision "shell", path: "setup.sh"
+
+  # proxy
+  #config.proxy.http     = "http://proxy:port"
+  #config.proxy.https    = "http://proxy.port"
+  #config.proxy.no_proxy = "localhost,127.0.0.1"
 end
