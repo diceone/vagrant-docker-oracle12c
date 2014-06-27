@@ -138,9 +138,7 @@ Image was created in the following way:
 ```
 $ vagrant ssh
 
-[vagrant@localhost ~]$ sudo docker pull yasushiyy/oraclelinux6
-Pulling repository yasushiyy/oraclelinux6
-  :
+[vagrant@localhost ~]$ sudo docker pull yasushiyy/vagrant-docker-oracle12c
 ```
 
 ## Install Database
