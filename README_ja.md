@@ -11,7 +11,7 @@ Silent Install部分も自動化しても良いのだが、個人的にそこは
 
 as of 6/15/2014
 
-## Setup
+## 環境
 
 * Host
   * Oracle Linux 6.5 (converted from CentOS6.5)
