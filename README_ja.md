@@ -1,11 +1,13 @@
 vagrant-docker-oracle12c
 ========================
 
-[Japanese version here](README_ja.md)
+[English version here](README.md)
 
-Vagrant + Docker + Oralce Linux 6.5 + Oracle Database 12cR1 (Enteprise Edition) setup.
-Does not include the DB12c binary.
-You need to download that from the official site beforehand.
+Vagrant + Docker + Oralce Linux 6.5 + Oracle Database 12cR1 (Enteprise Edition) シングルDB環境の簡易セットアップ手順。 OS周りは自動セットアップ、DB周りもSilent InstallによりGUI(X)なしでのセットアップが可能。
+
+Databaseのバイナリは別途ダウンロードが必要。
+
+Silent Install部分も自動化しても良いのだが、個人的にそこは目で見ながら手動でやったほうが良いと思う。
 
 as of 6/15/2014
 
@@ -35,18 +37,18 @@ as of 6/15/2014
                 MacOSX
 ```
 
-## Download
+## ダウンロード
 
-Download the database binary form below.  Unzip to the subdirectory name "database".
+Database のバイナリを以下からダウンロード。"database"というサブディレクトリになるはず。
 
 http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
 
 * linuxamd64_12c_database_1of2.zip
 * linuxamd64_12c_database_2of2.zip
 
-## Vagrant Setup
+## Vagrant設定
 
-If you are behing a proxy, install vagrant-proxyconf.
+プロキシを利用する必要がある場合、まず vagrant-proxyconf をインストールする。
 
 ```
 (MacOSX)
@@ -60,24 +62,19 @@ $ set https_proxy=proxy:port
 $ vagrant plugin install vagrant-proxyconf
 ```
 
-Install VirtualBox plugin.
+VirtualBox plugin をインストールする。
 
 ```
 $ vagrant plugin install vagrant-vbguest
 ```
 
-Clone this repository to the local directory.
-* Vagrantfile: uses CentOS 6.5, memory=2048M, reads setup.sh
-* Dockerfile: uses CentOS 6.5, uploaded as "yasushiyy/oraclelinux6" to the Docker Hub
-* setup.sh: converts into Oracle Linux, installs necessary packages
-* db12c.rsp: response file for DB silent install
-
+本レポジトリをローカルディスク上にcloneする。先ほどの"oracle"サブディレクトリを本ディレクトリ内にMOVEする。
 ```
 $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
 $ cd vagrant-docker-oracle12c
  ```
 
-If you are behind a proxy, add follwing to Vagrantfile:
+プロキシを利用する必要がある場合、追加で Vagrantfile の編集が必要。
 
 ```
 config.proxy.http     = "http://proxy:port"
@@ -85,16 +82,15 @@ config.proxy.https    = "http://proxy:port"
 config.proxy.no_proxy = "localhost,127.0.0.1"
 ```
 
-## Host OS Install (Vagrant)
+## ホストOSインストール (Vagrant)
 
-vagrant up will do the following:
-* download CentOS 6.5 and boot up
-* convert into Oracle Linux 6.5 https://linux.oracle.com/switch/centos/
-* fix locale warning
-* install oracle-rdbms-server-12cR1-preinstall
-* install docker-io
-* install UEK and make it a default kernel
-  * does not use UEKR3 at this point
+`vagrant up`を実行すると、内部的に以下が動く。
+* CentOS6.5のダウンロードと起動
+* Oracle Linuxへの変換 https://linux.oracle.com/switch/centos/
+* locale関連warningへの対処
+* oracle-rdbms-server-12cR1-preinstall のインストール
+* docker-io のインストール
+* UEKR2のインストール、デフォルト化
 
 ```
 $ vagrant up
@@ -102,7 +98,7 @@ $ vagrant up
 ==> default: Oracle Linux Server release 6.5
 ```
 
-Reboot to switch the kernel to UEKR2.  Confirm that NUMA and Transparent Hugepage is turned "off".
+リブートしてUEKR2を利用。NUMAとTransparent HugepageがOFFになっていることを確認。
 
 ```
 $ vagrant reload
@@ -126,20 +122,18 @@ gepage=never
 
 ```
 
-## Container OS Install (Docker)
+## コンテナOSインストール (Docker)
 
-Pull the Oracle Linux 6.5 Docker image from the Docker Hub repository.
-
-Image was created in the following way:
-* use official centos:centos6 image
-* convert into Oracle Linux 6.5 https://linux.oracle.com/switch/centos/
-* fix missing MAKEDEV error
-* fix locale warning
-* install vim
-* install oracle-rdbms-server-12cR1-preinstall
-* fix libnss_files.so to use /tmp/hosts instead of /etc/hosts https://gist.github.com/lalyos/9525120
-* create install directories
-* add ORACLE_XX environment variables
+CentOS6.5のDocker Imageに対して以下を実施済みのイメージをダウンロードする。
+* centos:centos6を利用
+* Oracle Linuxへの変換 https://linux.oracle.com/switch/centos/
+* MAKEDEVが足りないエラーへの対処
+* locale関連warningへの対処
+* oracle-rdbms-server-12cR1-preinstall のインストール
+* vim のインストール
+* libnss_files.so を書き換えて /etc/hosts の代わりに /tmp/hosts を利用させる https://gist.github.com/lalyos/9525120
+* DBインストールディレクトリ作成
+* ORACLE_HOME等の環境変数設定
 
 ```
 $ vagrant ssh
@@ -147,9 +141,9 @@ $ vagrant ssh
 [vagrant@localhost ~]$ sudo docker pull yasushiyy/vagrant-docker-oracle12c
 ```
 
-## DB Install
+## DBインストール
 
-Connect to the container.  Change hostname.  Switch to oracle user.
+コンテナに接続し、ホスト名およびユーザ設定を行う。
 
 ```
 [vagrant@localhost ~]$ sudo docker run --privileged -p 11521:1521 -t -i -v /vagrant:/vagrant yasushiyy/oraclelinux6 /bin/bash
@@ -160,7 +154,7 @@ bash-4.1# echo "127.0.0.1  localhost localhost.localdomain db12c" > /tmp/hosts
 bash-4.1# su - oracle
 ```
 
-Install ORACLE_HOME using OUI.
+OUIにてDBバイナリをインストールする。
 
 ```
 [oracle@db12c ~]$ /vagrant/database/runInstaller -silent -showProgress -ignorePrereq -responseFile /vagrant/db12c.rsp
@@ -193,7 +187,7 @@ Check /opt/oracle/product/12.1.0/dbhome_1/install/root_db12c.localdomain_2014-06
 bash-4.1# su - oracle
 ```
 
-Create listener using netca.
+netcaでリスナーを作成する。
 
 ```
 [oracle@db12c ~]$ netca -silent -responseFile $ORACLE_HOME/assistants/netca/netca.rsp
@@ -213,7 +207,7 @@ Listener configuration complete.
 Oracle Net Services configuration successful. The exit code is 0
 ```
 
-Create database using dbca.
+dbcaでDBを作成する。
 
 ```
 [oracle@db12c ~]$ dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbName corcl -sysPassword oracle -systemPassword oracle -emConfiguration NONE -datafileDestination /opt/datafile -storageType FS -characterSet AL32UTF8
@@ -243,7 +237,7 @@ Completing Database Creation
 Look at the log file "/opt/oracle/cfgtoollogs/dbca/corcl/corcl.log" for further details.
 ```
 
-Test connection.
+接続テスト。
 
 ```
 [oracle@db12c ~]$ sqlplus system/oracle@localhost:1521/corcl
