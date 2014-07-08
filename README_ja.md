@@ -68,7 +68,7 @@ VirtualBox plugin をインストールする。
 $ vagrant plugin install vagrant-vbguest
 ```
 
-本レポジトリをローカルディスク上にcloneする。先ほどの"oracle"サブディレクトリを本ディレクトリ内にMOVEする。
+本レポジトリをローカルディスク上にcloneする。先ほどの"database"サブディレクトリを本ディレクトリ内にMOVEする。
 ```
 $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
 $ cd vagrant-docker-oracle12c

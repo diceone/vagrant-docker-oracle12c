@@ -66,11 +66,7 @@ Install VirtualBox plugin.
 $ vagrant plugin install vagrant-vbguest
 ```
 
-Clone this repository to the local directory.
-* Vagrantfile: uses CentOS 6.5, memory=2048M, reads setup.sh
-* Dockerfile: uses CentOS 6.5, uploaded as "yasushiyy/oraclelinux6" to the Docker Hub
-* setup.sh: converts into Oracle Linux, installs necessary packages
-* db12c.rsp: response file for DB silent install
+Clone this repository to the local directory.  Move the "database" directory to the same folder.
 
 ```
 $ git clone https://github.com/yasushiyy/vagrant-docker-oracle12c
