@@ -109,13 +109,8 @@ Last login: Thu Jun 12 12:28:48 2014 from 10.0.2.2
 [vagrant@localhost ~]$ dmesg | more
 Initializing cgroup subsys cpuset
 Initializing cgroup subsys cpu
-Linux version 2.6.39-400.215.2.el6uek.x86_64 (mockbuild@ca-build44.us.oracle.com
-) (gcc version 4.4.6 20110731 (Red Hat 4.4.6-3) (GCC) ) #1 SMP Fri Jun 6 12:51:4
-4 PDT 2014
-Command line: ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS LANG=en_US.UTF-8 r
-d_NO_MD rd_LVM_LV=VolGroup/lv_swap SYSFONT=latarcyrheb-sun16 rd_LVM_LV=VolGroup/
-lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet numa=off transparent_hu
-gepage=never
+Linux version 2.6.39-400.215.2.el6uek.x86_64 (mockbuild@ca-build44.us.oracle.com) (gcc version 4.4.6 20110731 (Red Hat 4.4.6-3) (GCC) ) #1 SMP Fri Jun 6 12:51:44 PDT 2014
+Command line: ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS LANG=en_US.UTF-8 rd_NO_MD rd_LVM_LV=VolGroup/lv_swap SYSFONT=latarcyrheb-sun16 rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet numa=off transparent_hugepage=never
    :
 
 [vagrant@localhost ~]$ exit
@@ -148,7 +143,7 @@ $ vagrant ssh
 Connect to the container.  Change hostname.  Switch to oracle user.
 
 ```
-[vagrant@localhost ~]$ sudo docker run --privileged -p 11521:1521 -t -i -v /vagrant:/vagrant yasushiyy/oraclelinux6 /bin/bash
+[vagrant@localhost ~]$ sudo docker run --privileged -p 11521:1521 -t -i -v /vagrant:/vagrant yasushiyy/vagrant-docker-oracle12c /bin/bash
 
 bash-4.1# hostname -v db12c
 bash-4.1# echo "127.0.0.1  localhost localhost.localdomain db12c" > /tmp/hosts
