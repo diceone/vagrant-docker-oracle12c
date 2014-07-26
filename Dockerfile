@@ -19,8 +19,8 @@ RUN yum install -y vim-minimal
 RUN yum install -y oracle-rdbms-server-12cR1-preinstall
 
 # use /tmp/hosts instead of /etc/hosts
-RUN echo 127.0.0.1 localhost localhost.localdomain > /tmp/hosts \
- && sed -i.bak 's:/etc/hosts:/tmp/hosts:g' /lib64/libnss_files.so.2
+#RUN echo 127.0.0.1 localhost localhost.localdomain > /tmp/hosts \
+# && sed -i.bak 's:/etc/hosts:/tmp/hosts:g' /lib64/libnss_files.so.2
 
 # create directories
 RUN mkdir /opt/oracle /opt/oraInventory /opt/datafile \
