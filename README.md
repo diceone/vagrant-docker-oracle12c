@@ -50,7 +50,7 @@ If you are behing a proxy, install vagrant-proxyconf.
 ```
 (MacOSX)
 $ export http_proxy=proxy:port
-$ export https_proxy=proty:port
+$ export https_proxy=proxy:port
 
 (Windows)
 $ set http_proxy=proxy:port
